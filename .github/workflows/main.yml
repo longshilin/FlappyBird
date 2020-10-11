@@ -78,17 +78,33 @@ jobs:
   requestActivation:
     name: Request activation ✔
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        unityVersion:
+          - 2019.4.1f1
     steps:
       - uses: actions/checkout@v2
       - uses: webbertakken/unity-activate@v1.2
+        with:
+          unityVersion: ${{ matrix.unityVersion }}
 
   activateAndThenReturnLicense:
     name: returnLicense 🎈
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        unityVersion:
+          - 2019.4.1f1
     steps:
       - uses: actions/checkout@v2
       - uses: webbertakken/unity-activate@v1.2
+        with:
+          unityVersion: ${{ matrix.unityVersion }}
       - uses: webbertakken/unity-return-license@v1
+        with:
+          unityVersion: ${{ matrix.unityVersion }}
 
 #  testRunnerInEditMode:
 #    name: Test in editmode 📝
