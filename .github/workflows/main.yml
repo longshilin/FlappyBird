@@ -97,6 +97,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: webbertakken/unity-return-license@v1
+        if: always()
         with:
           unityVersion: ${{ matrix.unityVersion }}
 
